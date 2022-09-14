@@ -1,0 +1,32 @@
+\section{Alocação de Memória Dinâmica}
+Nós comentamos um pouco na primeira seção sobre alocação estática de memória. Agora vamos comentar sobre
+\textbf{Alocação Dinâmica de Memória}. Nesse caso, a alocação ocorre durante o \textit{runtime} do programa.
+Mas, porque precisamos disso? Alocação de memória durante o tempo de execução do programa nos permite uma maior
+flexibilidade com a memória \cite{geeksMemoryAllocation}, ou seja, conseguimos gerenciar a memória que precisamos, sem alocar mais
+ou menos que o necessário. Na maioria das vezes, vamos usar alocação dinâmica para tipos de dados
+derivados, ou seja, \textit{pointer types}, \textit{array}, \textit{structures} (registros), etc.
+
+\subsection{Como alocar dinamicamente?}
+As 4 funções em C referente a alocação dinâmica de memória estão definidas na \textit{stdlib.h}, sendo elas:
+\begin{itemize}
+  \item \textit{malloc() \footnote{Mais comum quando trabalhamos com alocação dinâmica.}}: abreviação para \textit{memory allocation}. Essa função reserva um bloco de memória
+    com o tamanho especificado de \textit{bytes}, e retorna um \textbf{ponteiro} do tipo \textit{void}
+    que podemos dar \textit{cast} para outro tipo de dado. 
+  \item \textit{realloc()}: caso a memória previamente alocada dinamicamente for insuficiente (ou maior do que necessário)
+    podemos mudar o tamanho dela usando a função \textit{realloc}, especificando o novo tamanho da memória.
+  \item \textit{calloc()}: abreviação para \textit{contiguous allocation}. A diferença entre \textit{malloc} e \textit{calloc}
+    é que o segundo aloca a memória e inicializa todos os \textit{bits} para zero.
+  \item \textit{free()}: memória dinamicamente alocada não são liberadas sozinhas, já que as mesma
+    estão sendo alocadas na Heap. Dessa forma, precisamos explicitamente liberar elas usando a função \textit{free}.
+    Caso não liberamos a memória, pode ocorrer o \textit{Memory Leak}, reduzindo a performance e a
+    quantidade de memória disponível.
+\end{itemize}
+
+\subsection{Sintaxe das Funções}
+\begin{lstlisting}[language=C]
+ptr = (castType*)malloc(size)
+ptr = (castType*)calloc(n, size)
+ptr = realloc(ptr, x)
+free(ptr)
+\end{lstlisting}
+
